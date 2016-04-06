@@ -67,8 +67,8 @@ public class TesteCliqueMaxima {
 		CliqueMaxima cm = new CliqueMaxima(matrixTamanho, matrix);				
 
 		cm.buscar();
-		System.out.println("Solução:" + cm.printSolution());
-		System.out.println("Maxima:" + cm.maxSize);		
+		System.out.println("Solução:" + cm.getSolucao());
+		System.out.println("Maxima:" + cm.tamanhoMaximo);		
 		
 		// Loga
 		d = new Date();
