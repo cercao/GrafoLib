@@ -28,7 +28,6 @@ public class CicloHamiltonianoCavalo {
 	private int[][] matrizGrafo;
 	int[] verticesVizinhos;
 	Hashtable vertices = new Hashtable<>();
-	List<Object> verticesProibidos = new ArrayList<Object>();
 
 	
 	public void buscarCicloHamiltoniano(int[][] grafo) {	
@@ -49,8 +48,8 @@ public class CicloHamiltonianoCavalo {
 		    }
 		};
 
-		// agenda timer para executar a cada um minuto
-		timer.schedule (hourlyTask, 0l, 1000*60);
+		// agenda timer para executar a cada 10 minutos
+		timer.schedule (hourlyTask, 0l, 1000*60*10);
 		
 		try {
 			// Converte para estrutura de hash
@@ -90,10 +89,11 @@ public class CicloHamiltonianoCavalo {
 			timer.cancel();
 			
 			// se passou uma exceção, mostra o caminho:			
-			System.out.print("\nCiclo Hamiltoniano encontrado: ");
-			for (int i = 0; i <= caminho1.length; i++)
+			System.out.print("\nCiclo do Cavalo encontrado: ");
+			for (int i = 0; i < caminho1.length; i++)
 				System.out.print(caminho1[i] + " ");		
 			
+			System.out.println("");
 			System.out.println(" Total Iteracoes: " + String.format( "%.2f", totalCont ));
 		}
 	}
@@ -103,7 +103,7 @@ public class CicloHamiltonianoCavalo {
 		boolean temConexao = isConnected(vertice, 0);
 		
 		// verifica se o vértice atual está conectado com o primeiro e se é o último grafo
-		if (temConexao == true && caminhoCount == vertices.size())
+		if (caminhoCount == vertices.size())
 			throw new Exception("Caminho: ");
 		
 		// se é o último e não encontrou, para de buscar e mostra a mensagem
