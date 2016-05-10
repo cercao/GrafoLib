@@ -19,7 +19,7 @@ public class TesteCliqueMaxima {
 		List<String> lines = 
 				Files.readAllLines(
 						Paths.get(
-								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/K10.txt"),
+								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/cavalo5.txt"),
                 StandardCharsets.UTF_8);
 		
 		// Inicializa variaveis
@@ -52,26 +52,39 @@ public class TesteCliqueMaxima {
 			matrix[Integer.parseInt(coords[1])][Integer.parseInt(coords[0])] = 1;									
 			
 			index++;
-		}		
+		}	
+		
 				
-//		System.out.println("Imprimindo matriz..");
-//		for (int i = 0; i < matrix.length; i++) {
-//		    for (int j = 0; j < matrix[0].length; j++) {
-//		        System.out.print(matrix[i][j] + " ");
-//		    }
-//		    System.out.print("\n");
-//		}						
+		System.out.println("Imprimindo matriz..");
+		System.out.print("   | ");	
+		// imprimindo header
+		for (int i = 0; i < matrix.length; i++) {					      
+			System.out.print(String.format("%02d", i) + " | ");		   		   
+			
+		}	
+		
+		System.out.println();
+		
+		for (int i = 0; i < matrix.length; i++) {
+			
+			System.out.print( String.format("%02d", i) + " | ");
+		    for (int j = 0; j < matrix[0].length; j++) {
+		    	
+		        System.out.print(String.format("%02d", matrix[i][j]) + " | ");
+		    }
+		    System.out.print("\n");
+		}						
 		
 		System.out.println("Iniciando teste da clique maxima..");
 				
-		CliqueMaxima cm = new CliqueMaxima(matrixTamanho, matrix);				
+		//CliqueMaxima cm = new CliqueMaxima(matrixTamanho, matrix);				
 
-		cm.buscar();
-		System.out.println("Solução:" + cm.getSolucao());
-		System.out.println("Maxima:" + cm.tamanhoMaximo);		
+		//cm.buscar();
+		//System.out.println("Solução:" + cm.getSolucao());
+		//System.out.println("Maxima:" + cm.tamanhoMaximo);		
 		
 		// Loga
-		d = new Date();
+		//d = new Date();
 		System.out.println(d.toString() + ": Fim..");
 	}
 

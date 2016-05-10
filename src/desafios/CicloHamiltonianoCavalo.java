@@ -48,8 +48,8 @@ public class CicloHamiltonianoCavalo {
 		    }
 		};
 
-		// agenda timer para executar a cada 10 minutos
-		timer.schedule (hourlyTask, 0l, 1000*60*10);
+		// agenda timer para executar a cada 1 hora
+		timer.schedule (hourlyTask, 0l, 1000*60*60);
 		
 		try {
 			// Converte para estrutura de hash
@@ -103,7 +103,7 @@ public class CicloHamiltonianoCavalo {
 		boolean temConexao = isConnected(vertice, 0);
 		
 		// verifica se o vértice atual está conectado com o primeiro e se é o último grafo
-		if (caminhoCount == vertices.size())
+		if (temConexao == true && caminhoCount == vertices.size())
 			throw new Exception("Caminho: ");
 		
 		// se é o último e não encontrou, para de buscar e mostra a mensagem

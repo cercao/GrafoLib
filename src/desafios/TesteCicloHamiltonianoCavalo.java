@@ -19,7 +19,7 @@ public class TesteCicloHamiltonianoCavalo {
 		List<String> lines = 
 				Files.readAllLines(
 						Paths.get(
-								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/input3.txt"),
+								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/cavalo36.txt"),
                 StandardCharsets.UTF_8);
 		
 		// Inicializa variaveis

@@ -71,44 +71,6 @@ public class CliqueMaxima {
     	}
     }
 
-    void expandir (ArrayList<Integer> nosX, ArrayList<Integer> nosY) {    	// C P
-    	
-    	nDecisoes++;
-    	// itera os nós
-    	for(int i = nosY.size() - 1; i >=0; i--){
-    		
-    		// se a quantidade de nós em x mais os de y foram menor que o maximo..
-    		if(nosY.size() + nosY.size() <= tamanhoMaximo ) 
-    			return ;
-    		
-    		// pega o nó de Y e adiciona em X
-    		int v = nosY.get(i) ;
-    		nosX.add(v);
-    		
-    		// crio uma nova origem
-    		ArrayList<Integer> novoNosY = new ArrayList<Integer>();
-    		
-    		// para cada item em Y que estiver conectado, grava o vizinho no novo Y
-    		for(int w : nosY) 
-    			if(A[v][w] == 1 ) 
-    				novoNosY.add(w);
-    		
-    		// se não tem itens e a quantidade de nós em X for mais que o tamanho maximo, encontrou uma solucao
-    		if(novoNosY.isEmpty() && nosX.size() > tamanhoMaximo) {
-    			gravaSolution(nosX);
-    			solucao = convertIntegers(nosX);
-    		}
-    		
-    		// Se o novo Y não está vazio, continua expandindo
-    		if(!novoNosY.isEmpty()) 
-    			expandir(nosX, novoNosY);
-    		
-    		// remove nó atual
-    		nosX.remove((Integer)v);
-    		nosY.remove((Integer)v);
-    	}
-    }
-    
     public static int[] convertIntegers(List<Integer> integers)
     {
         int[] ret = new int[integers.size()];

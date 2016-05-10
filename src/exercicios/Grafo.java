@@ -160,7 +160,7 @@ public class Grafo {
 		marcados.add(u);
 		System.out.println(u);    
 		
-		// Enquanto estiver conteudo
+		// Enquanto tiver conteudo
 		while(!q.isEmpty())
 		{
 			// v é o primeiro
