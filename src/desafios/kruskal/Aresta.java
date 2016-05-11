@@ -32,7 +32,7 @@ public class Aresta implements Comparable {
 		return this.v;
 	}
 
-	// Comparador expecificado
+	// Comparador especificado
 	public int compareTo(Object a) {
 		Aresta aresta = (Aresta) a;
 

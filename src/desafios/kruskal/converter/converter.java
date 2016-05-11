@@ -90,7 +90,7 @@ public class converter {
 	
 	
 	public static void main(String[] args) {
-		convert("_aux.ppm", "arvoresPorEstados.png");
+		convert("_aux.ppm", "arvoresPorEstado.png");
 	}
 
 	public static class NullOutputStream extends OutputStream {

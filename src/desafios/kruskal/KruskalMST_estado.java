@@ -35,20 +35,22 @@ public class KruskalMST_estado {
 
 	public static void main(String[] args) {
 
-		System.out.println((new Date()).toString() + ": Inicializa imagem");
+		//System.out.println((new Date()).toString() + ": Inicializa imagem");
 
 		inicializaImagem();
 
 		for (Estado e : Estado.values()) {
 			// desenha os pontos, recupera total no n
-			System.out.println((new Date()).toString() + ": Inicializa carregamento dos pontos: " + e.toString());
+			//System.out.println((new Date()).toString() + ": Inicializa carregamento dos pontos: " + e.toString());
 
 			carregaPontos(e);
 
+			//System.out.println((new Date()).toString() + ": Carregados: " + vertices.size() );
+			
 			/* Run the tests for size n */
 			float test2 = encontraMST(e);
 			
-			System.out.printf("Custo: %f\n", test2);
+			System.out.println(e.toString() +";" + vertices.size());
 		}
 		
 		// imprime o arquivo
@@ -64,7 +66,7 @@ public class KruskalMST_estado {
 			out.write("\n");
 			out.close();
 			
-			System.out.println((new Date()).toString() + ": Impressão concluída.");
+			//System.out.println((new Date()).toString() + ": Impressão concluída.");
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -250,9 +252,9 @@ public class KruskalMST_estado {
 		/* Create a list of Arestas */
 		List<Aresta> arestas = new ArrayList<Aresta>();
 		
-		System.out.printf("Qtd de vértices: " + vertices.size());
+		//System.out.printf("Qtd de vértices: " + vertices.size());
 
-		System.out.println((new Date()).toString() + ": Inicializa carregamento das arestas: " + e.toString());
+		//System.out.println((new Date()).toString() + ": Inicializa carregamento das arestas: " + e.toString());
 		for (int i = 0; i < vertices.size(); i++) {
 			for (int j = 0; j < vertices.size(); j++) {
 
@@ -267,7 +269,7 @@ public class KruskalMST_estado {
 			}
 		}
 
-		System.out.println((new Date()).toString() + ": Terminou carregamento das arestas");
+		//System.out.println((new Date()).toString() + ": Terminou carregamento das arestas");
 		
 		UnionFind d = new UnionFind(vertices);
 		
@@ -295,12 +297,12 @@ public class KruskalMST_estado {
 			sum += Math.sqrt(a.getWeight());
 		}
 
-		System.out.println("Soma: " + sum);
+		//System.out.println("Soma: " + sum);
 
 		// Imprime a tree
 		gravarArvore(tree);
 
-		System.out.println("Concluída gravação da árvore mínima");
+		//System.out.println("Concluída gravação da árvore mínima");
 
 		/* Now return the sum */
 		return sum;
