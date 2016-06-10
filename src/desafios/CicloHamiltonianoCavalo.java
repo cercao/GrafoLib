@@ -22,6 +22,7 @@ public class CicloHamiltonianoCavalo {
 	DecimalFormat df = new DecimalFormat("#.00"); 
 	double totalCont = 0;	
 	double valorAnterior = 0;
+	int countCaminho = 0;
 	private int caminhoCount;
 	private int[] caminho;
 	private Object[] caminho1;
@@ -36,7 +37,7 @@ public class CicloHamiltonianoCavalo {
 		TimerTask hourlyTask = new TimerTask () {
 		    @Override
 		    public void run () {
-		    	System.out.println((new Date()).toString() + ": " +  String.format( "%.2f", totalCont )
+		    	System.out.println("TotalCaminho: " + countCaminho + " Total:" + String.format( "%.2f", totalCont )
 		    	+
 		    	"; Velocidade: " + String.format( "%.2f", totalCont - valorAnterior) + "it/h; "
 		    	+ "Caminho: " + convertCaminhoToString1(caminho1));
@@ -48,8 +49,8 @@ public class CicloHamiltonianoCavalo {
 		    }
 		};
 
-		// agenda timer para executar a cada 1 hora
-		timer.schedule (hourlyTask, 0l, 1000*60*60);
+		// agenda timer para executar a cada 1 minuto
+		timer.schedule (hourlyTask, 0l, 1000*60);
 		
 		try {
 			// Converte para estrutura de hash
@@ -122,9 +123,7 @@ public class CicloHamiltonianoCavalo {
 		
 		// Itera os vértices vizinhos 		
 		for (int v = 0; v < verticesVizinhos.length; v++) {
-			
-
-			
+						
 			// Contabiliza
 			totalCont++;				
 			
@@ -132,6 +131,12 @@ public class CicloHamiltonianoCavalo {
 				
 			// adiciono no caminho e incremento o contador
 			caminho1[caminhoCount++] = verticesVizinhos[v];
+			
+			// loga se encontrou um caminho pelo menos
+			if (caminhoCount == vertices.size()){
+				//System.out.println("Caminho: " + convertCaminhoToString1(caminho1));
+				countCaminho++;
+			}
 			
 			// Remove a conexao
 			disconnect(vertice, verticesVizinhos[v]);
@@ -198,10 +203,10 @@ public class CicloHamiltonianoCavalo {
 	}
 	
 	
-	public int getTamanhoCaminho(int[] path) {
+	public int getTamanhoCaminho(Object[] path) {
 		int cont = 0;
 		for (int i = 0; i < path.length; i++) {		
-			if (path[i] != -1)
+			if (!path[i].toString().equals("-1"))
 				cont++;
 		}
 		

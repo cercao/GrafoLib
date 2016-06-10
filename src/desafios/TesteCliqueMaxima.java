@@ -19,7 +19,7 @@ public class TesteCliqueMaxima {
 		List<String> lines = 
 				Files.readAllLines(
 						Paths.get(
-								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/cavalo5.txt"),
+								"C:/Users/Lucas Rodrigues/workspace/GraphLib/src/K3.txt"),
                 StandardCharsets.UTF_8);
 		
 		// Inicializa variaveis
@@ -77,11 +77,11 @@ public class TesteCliqueMaxima {
 		
 		System.out.println("Iniciando teste da clique maxima..");
 				
-		//CliqueMaxima cm = new CliqueMaxima(matrixTamanho, matrix);				
+		CliqueMaxima cm = new CliqueMaxima(matrixTamanho, matrix);				
 
-		//cm.buscar();
-		//System.out.println("Solução:" + cm.getSolucao());
-		//System.out.println("Maxima:" + cm.tamanhoMaximo);		
+		cm.buscar();
+		System.out.println("Solução:" + cm.getSolucao());
+		System.out.println("Maxima:" + cm.tamanhoMaximo);		
 		
 		// Loga
 		//d = new Date();

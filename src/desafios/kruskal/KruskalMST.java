@@ -22,6 +22,7 @@ public class KruskalMST {
 	static int[][][] figura;	
 	static List<String> combinacoesPossivel; 
 	static boolean[][] adjEstados; 
+	static double maiorDistancia = 0;
 	static int n;
 	static int ne;
 	static int xmax = Integer.MIN_VALUE;
@@ -77,7 +78,7 @@ public class KruskalMST {
 		combinacoesPossivel.add("MAPI");
 		combinacoesPossivel.add("MAPA");
 		combinacoesPossivel.add("MATO");
-		combinacoesPossivel.add("MABA");
+		//combinacoesPossivel.add("MABA");
 		combinacoesPossivel.add("MAMA");
 		combinacoesPossivel.add("PIPI");
 		combinacoesPossivel.add("PIMA");
@@ -287,6 +288,12 @@ public class KruskalMST {
 
 						int lat2 = (int) (vertices.get(e.getV()).getLat() * 30);
 						int lon2 = (int) (vertices.get(e.getV()).getLon() * 30);
+						
+						if (e.getWeight() > maiorDistancia)
+							maiorDistancia = e.getWeight();
+						
+						if (e.getWeight() > 1000)
+							continue;
 
 						desenhaLinha(lat1, lon1, lat2, lon2);
 					}
@@ -448,6 +455,7 @@ public class KruskalMST {
 		imprimeArvore(tree);
 
 		System.out.println("Concluída impressao da árvore mínima");
+		System.out.println("Maior distancia:" + maiorDistancia);		
 
 		/* Now return the sum */
 		return sum;

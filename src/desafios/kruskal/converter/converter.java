@@ -88,9 +88,12 @@ public class converter {
 		return ok;
 	}
 	
+	public static void converter(String origem, String destino) {
+		convert(origem, destino);
+	}
 	
 	public static void main(String[] args) {
-		convert("_aux.ppm", "arvoresPorEstado.png");
+		convert("_aux.ppm", "testeDikstra2.png");
 	}
 
 	public static class NullOutputStream extends OutputStream {

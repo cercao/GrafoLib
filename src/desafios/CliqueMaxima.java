@@ -21,53 +21,53 @@ public class CliqueMaxima {
 
     void buscar(){    	
     	nDecisoes = 0;
-    	ArrayList<Integer> matrizListaX = new ArrayList<Integer>();
-    	ArrayList<Integer> matrizListaY = new ArrayList<Integer>(n);    	
+    	ArrayList<Integer> listaSolucaoTemp = new ArrayList<Integer>();
+    	ArrayList<Integer> listaAtual = new ArrayList<Integer>(n);    	
     	
-    	// Adiciona todos os nós
+    	// Adiciona todos os nós em Y
     	for(int i = 0; i < n ; i++) 
-    		matrizListaY.add(i);
+    		listaAtual.add(i);
     		
-    	// Chama recursiva
-    	expand(matrizListaX, matrizListaY);
+    	// Chama recursiva passando matriz valia e a carregada
+    	expand(listaSolucaoTemp, listaAtual);
     }
     
 
-    void expand (ArrayList<Integer> nosX , ArrayList<Integer> nosY) {
+    void expand (ArrayList<Integer> listaSolucaoTemp , ArrayList<Integer> listaAtual) {
     	
     	nDecisoes++;
-    	// itera os nós
-    	for(int i = nosY.size() -1; i >= 0; i--){
+    	// itera os nós de Y, que no início é a carregada (itera de baixo pra cima)
+    	for(int i = listaAtual.size() - 1; i >= 0; i--){
     		
-    		// se a quantidade de nós em x mais os de y foram menor que o maximo..
-    		if(nosX.size() + nosY.size() <= tamanhoMaximo ) 
+    		// A somatória, deve ser sempre o tamanho total do grafo, quando for menor ou igual, é por que já removeu itens o suficiente
+    		if(listaSolucaoTemp.size() + listaAtual.size() <= tamanhoMaximo ) 
     			return ;
     		
     		// pega o nó de Y e adiciona em X
-    		int v = nosY.get(i) ;
-    		nosX.add(v);
+    		int v = listaAtual.get(i) ;
+    		listaSolucaoTemp.add(v);
     		
-    		// crio uma nova origem
+    		// Lista de nós conectados
     		ArrayList<Integer> novoNosY = new ArrayList<Integer>();
     		
     		// para cada item em Y que estiver conectado, grava o vizinho no novo Y
-    		for(int w : nosY) 
+    		for(int w : listaAtual) 
     			if(A[v][w] == 1) 
     				novoNosY.add(w);
     		
     		// se não tem itens e a quantidade de nós em X for mais que o tamanho maximo, encontrou uma solucao
-    		if(novoNosY.isEmpty() && nosX.size() > tamanhoMaximo) {
-    			gravaSolution(nosX);
-    			solucao = convertIntegers(nosX);
+    		if(novoNosY.isEmpty() && listaSolucaoTemp.size() > tamanhoMaximo) {
+    			gravaSolution(listaSolucaoTemp);
+    			solucao = convertIntegers(listaSolucaoTemp);
     		}
     		
     		// Se o novo Y não está vazio, continua expandindo
     		if(!novoNosY.isEmpty()) 
-    			expand(nosX, novoNosY);
+    			expand(listaSolucaoTemp, novoNosY);
     		
     		// remove nó atual
-    		nosX.remove((Integer)v);
-    		nosY.remove((Integer)v);
+    		listaSolucaoTemp.remove((Integer)v);
+    		listaAtual.remove((Integer)v);
     	}
     }
 

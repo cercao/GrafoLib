@@ -21,6 +21,7 @@ public class KruskalMST_estado {
 	static ArrayList<Vertice> vertices;
 	static BufferedWriter out = null;
 	static int[][][] figura;
+	static double maiorDistancia = 0;
 	static List<String> combinacoesPossivel;
 	static boolean[][] adjEstados;
 	static int dx = 0;
@@ -40,6 +41,7 @@ public class KruskalMST_estado {
 		inicializaImagem();
 
 		for (Estado e : Estado.values()) {
+			maiorDistancia = 0;
 			// desenha os pontos, recupera total no n
 			//System.out.println((new Date()).toString() + ": Inicializa carregamento dos pontos: " + e.toString());
 
@@ -47,10 +49,10 @@ public class KruskalMST_estado {
 
 			//System.out.println((new Date()).toString() + ": Carregados: " + vertices.size() );
 			
-			/* Run the tests for size n */
-			float test2 = encontraMST(e);
 			
-			System.out.println(e.toString() +";" + vertices.size());
+			float test2 = encontraMST(e);	
+			
+			System.out.println(e.toString() +";" + maiorDistancia + ";" + vertices.size());
 		}
 		
 		// imprime o arquivo
@@ -87,6 +89,12 @@ public class KruskalMST_estado {
 
 			int lat2 = (int) (vertices.get(a.getV()).getLat() * 30);
 			int lon2 = (int) (vertices.get(a.getV()).getLon() * 30);
+			
+			if (a.getWeight() > maiorDistancia)
+				maiorDistancia = a.getWeight();
+			
+			if (a.getWeight() > 1800)
+				continue;
 
 			desenhaLinha(lat1, lon1, lat2, lon2);
 		}
@@ -278,6 +286,8 @@ public class KruskalMST_estado {
 		// Comparação modificada
 		Collections.sort(arestas);
 
+		//maiorDistancia = arestas.get(arestas.size() - 1).getWeight();
+		
 		// Kruskal 
 		for (Aresta a : arestas) {
 			Vertice u = vertices.get(a.getU());
