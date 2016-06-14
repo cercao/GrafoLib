@@ -6,7 +6,7 @@ import java.util.List;
 public class CliqueMaxima {	
 	int [][] A; // matriz adjacente 0-1
 	int n; // numero de vertices
-	long nDecisoes; // numero de decisoes
+	long count; // numero de decisoes
     int tamanhoMaximo ; // tamanho da clique maxima
     int [] solucao; // solução encontrada
     int [] solucao01; // solução encontrada 0-1    
@@ -14,56 +14,56 @@ public class CliqueMaxima {
     CliqueMaxima (int tamanho, int [][] matriz){
     	this.n = tamanho;
     	this.A = matriz;    	
-    	nDecisoes = tamanhoMaximo = 0;    	   
+    	count = tamanhoMaximo = 0;    	   
     	solucao01 = new int[n];    	
     	
     }
 
     void buscar(){    	
-    	nDecisoes = 0;
+    	count = 0;
     	ArrayList<Integer> listaSolucaoTemp = new ArrayList<Integer>();
     	ArrayList<Integer> listaAtual = new ArrayList<Integer>(n);    	
     	
-    	// Adiciona todos os nós em Y
+    	// Adiciona todos os nós na lista atual
     	for(int i = 0; i < n ; i++) 
     		listaAtual.add(i);
     		
-    	// Chama recursiva passando matriz valia e a carregada
+    	// Chama recursiva passando matriz vazia e a carregada
     	expand(listaSolucaoTemp, listaAtual);
     }
     
 
-    void expand (ArrayList<Integer> listaSolucaoTemp , ArrayList<Integer> listaAtual) {
-    	
-    	nDecisoes++;
-    	// itera os nós de Y, que no início é a carregada (itera de baixo pra cima)
+    void expand (ArrayList<Integer> listaSolucaoTemp , ArrayList<Integer> listaAtual) {    	
+    	count++;
+    	// itera os nós da lista atual
     	for(int i = listaAtual.size() - 1; i >= 0; i--){
     		
-    		// A somatória, deve ser sempre o tamanho total do grafo, quando for menor ou igual, é por que já removeu itens o suficiente
+    		// quando a somatória for menor ou igual, é por que já removeu itens o suficiente, não é possível continuar
     		if(listaSolucaoTemp.size() + listaAtual.size() <= tamanhoMaximo ) 
     			return ;
     		
-    		// pega o nó de Y e adiciona em X
+    		// pega o nó da lista atual e adiciona na SolucaoTemp
     		int v = listaAtual.get(i) ;
     		listaSolucaoTemp.add(v);
     		
     		// Lista de nós conectados
-    		ArrayList<Integer> novoNosY = new ArrayList<Integer>();
+    		ArrayList<Integer> novaListaAtual = new ArrayList<Integer>();
     		
-    		// para cada item em Y que estiver conectado, grava o vizinho no novo Y
+    		// para cada item na lista atual que estiver conectado, grava o vizinho na novaListaAtual
     		for(int w : listaAtual) 
     			if(A[v][w] == 1) 
-    				novoNosY.add(w);
+    				novaListaAtual.add(w);
     		
-    		// se não tem itens e a quantidade de nós em X for mais que o tamanho maximo, encontrou uma solucao
-    		if(novoNosY.isEmpty() && listaSolucaoTemp.size() > tamanhoMaximo) {
+    		// se não tem itens (não encontrou conexao)
+    		// e a quantidade de nós na SolucaoTemp for maior que o tamanho maximo, encontrou uma nova solucao
+    		if(novaListaAtual.isEmpty() && listaSolucaoTemp.size() > tamanhoMaximo) {
     			gravaSolution(listaSolucaoTemp);
     			solucao = convertIntegers(listaSolucaoTemp);
     		}
     		
-    		// Se o novo Y não está vazio, continua expandindo
-    		if(!novoNosY.isEmpty()) 
-    			expand(listaSolucaoTemp, novoNosY);
+    		// Se a nova lista atual não está vazia, continua expandindo
+    		if(!novaListaAtual.isEmpty()) 
+    			expand(listaSolucaoTemp, novaListaAtual);
     		
     		// remove nó atual
     		listaSolucaoTemp.remove((Integer)v);

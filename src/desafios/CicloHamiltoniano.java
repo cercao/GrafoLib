@@ -89,11 +89,7 @@ public class CicloHamiltoniano {
 						
 			// Contabiliza
 			totalCont++;
-			
-			//if (totalCont % Integer.MAX_VALUE == 0){
-			//	System.out.println((new Date()).toString() + ": " +  String.format( "%.2f", totalCont ));
-			//}
-			
+
 			// Verifica se o vertice atual está conectado 
 			if (matrizGrafo[vertice][v] == 1) {
 				

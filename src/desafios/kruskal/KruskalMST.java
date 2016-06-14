@@ -387,13 +387,6 @@ public class KruskalMST {
 
 		List<Aresta> arestas = new ArrayList<Aresta>();
 				
-		// qtd --- 100
-		// atual-- x
-		// x = 100*atual/qtd
-		// carrega arestas
-		
-		int cont = 0;
-		int logInt = (vertices.size() * vertices.size());
 		System.out.println((new Date()).toString() + ": Inicializa carregamento das arestas com tamanho: " + vertices.size() * vertices.size() );
 		for (int i = 0; i < vertices.size(); i++) {
 			for (int j = 0; j < vertices.size(); j++) {										
@@ -414,9 +407,7 @@ public class KruskalMST {
 		}
 
 		System.out.println((new Date()).toString() + ": Terminou carregamento das arestas");
-
 		UnionFind d = new UnionFind(vertices);
-
 		List<Aresta> tree = new ArrayList<Aresta>();
 
 		// Comparação modificada
